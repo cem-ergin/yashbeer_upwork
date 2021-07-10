@@ -8,6 +8,8 @@ import 'package:yashbeer/constants/constants.dart';
 import 'package:yashbeer/utils/locator.dart';
 import 'package:yashbeer/utils/size_helper.dart';
 
+import '../bar_page.dart';
+
 SizeHelper _sizeHelper = locator<SizeHelper>();
 
 class HomePage extends StatefulWidget {
@@ -511,195 +513,202 @@ class _HomePageState extends State<HomePage> {
         ),
         child: ClipPath(
           clipper: OvalBottomBorderClipper(),
-          child: Container(
-            height: _sizeHelper.getHeight(120),
-            width: _sizeHelper.size.width,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                ),
-              ],
-              color: Color.fromRGBO(7, 21, 102, 1),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: _sizeHelper.getHeight(16),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _sizeHelper.sbw(16),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                              _sizeHelper.getWidth(12),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(
-                              _sizeHelper.getWidth(6),
-                            ),
-                            child: Icon(
-                              Icons.menu,
-                              color: Color.fromRGBO(17, 82, 173, 1),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(),
-                        ),
-                      ],
-                    ),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => BarPage()));
+            },
+            child: Container(
+              height: _sizeHelper.getHeight(120),
+              width: _sizeHelper.size.width,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
                   ),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          radius: _sizeHelper.getWidth(20),
-                          backgroundColor: Color.fromRGBO(49, 96, 171, 1),
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage("assets/images/man3.jpeg"),
-                            radius: _sizeHelper.getWidth(18),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "John Doe",
-                              style: _whiteExtraBold().copyWith(
-                                letterSpacing: -0.5,
+                ],
+                color: Color.fromRGBO(7, 21, 102, 1),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: _sizeHelper.getHeight(16),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _sizeHelper.sbw(16),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                _sizeHelper.getWidth(12),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: _sizeHelper.getWidth(22),
-                                  color: Color.fromRGBO(43, 105, 202, 1),
-                                ),
-                                Stack(
-                                  children: <Widget>[
-                                    Text(
-                                      '10',
-                                      style: TextStyle(
-                                        fontSize: _sizeHelper.getWidth(22),
-                                        foreground: Paint()
-                                          ..style = PaintingStyle.stroke
-                                          ..strokeWidth = 1
-                                          ..color = Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      '10',
-                                      style: TextStyle(
-                                        fontSize: _sizeHelper.getWidth(22),
-                                        color: Color.fromRGBO(43, 105, 202, 1),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            child: Padding(
+                              padding: EdgeInsets.all(
+                                _sizeHelper.getWidth(6),
+                              ),
+                              child: Icon(
+                                Icons.menu,
+                                color: Color.fromRGBO(17, 82, 173, 1),
+                              ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Text(
-                          "Cash Mode",
-                          style: _whiteExtraBold().copyWith(
-                            color: !_switchValue ? Colors.grey : Colors.white,
                           ),
-                        ),
-                        _sizeHelper.sbh(8),
-                        Transform.scale(
-                          scale: 0.6,
-                          child: Transform.rotate(
-                            angle: pi * 1.5,
-                            child: FlutterSwitch(
-                              activeColor: Colors.white,
-                              inactiveColor: Colors.white,
-                              activeToggleColor:
-                                  Color.fromRGBO(43, 105, 202, 1),
-                              inactiveToggleColor:
-                                  Color.fromRGBO(43, 105, 202, 1),
-                              onToggle: (value) {
-                                _switchValue = value;
-                                setState(() {});
-                              },
-                              value: _switchValue,
-                            ),
-                            // child: CupertinoSwitch(
-                            //   activeColor: Colors.white,
-                            //   trackColor: Colors.white,
-                            //   onChanged: (value) {
-                            //     _switchValue = value;
-                            //     setState(() {});
-                            //   },
-                            //   value: _switchValue,
-                            // ),
+                          Expanded(
+                            child: Container(),
                           ),
-                        ),
-                        _sizeHelper.sbh(8),
-                        Text(
-                          "Free Mode",
-                          style: _whiteExtraBold().copyWith(
-                            color: _switchValue ? Colors.grey : Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: _sizeHelper.getHeight(50),
-                      width: _sizeHelper.getWidth(30),
-                      decoration: BoxDecoration(
-                        // color: Colors.red,
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/Group 204.png"),
-                          fit: BoxFit.fitHeight,
-                        ),
+                        ],
                       ),
+                    ),
+                    Expanded(
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _sizeHelper.sbw(12),
-                          Text(
-                            "Rs.",
-                            style: TextStyle(
-                              color: Color.fromRGBO(0, 79, 171, 1),
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: -2,
-                              fontSize: _sizeHelper.getWidth(10),
+                          CircleAvatar(
+                            radius: _sizeHelper.getWidth(20),
+                            backgroundColor: Color.fromRGBO(49, 96, 171, 1),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage("assets/images/man3.jpeg"),
+                              radius: _sizeHelper.getWidth(18),
                             ),
                           ),
+                          Column(
+                            children: [
+                              Text(
+                                "John Doe",
+                                style: _whiteExtraBold().copyWith(
+                                  letterSpacing: -0.5,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    size: _sizeHelper.getWidth(22),
+                                    color: Color.fromRGBO(43, 105, 202, 1),
+                                  ),
+                                  Stack(
+                                    children: <Widget>[
+                                      Text(
+                                        '10',
+                                        style: TextStyle(
+                                          fontSize: _sizeHelper.getWidth(22),
+                                          foreground: Paint()
+                                            ..style = PaintingStyle.stroke
+                                            ..strokeWidth = 1
+                                            ..color = Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        '10',
+                                        style: TextStyle(
+                                          fontSize: _sizeHelper.getWidth(22),
+                                          color:
+                                              Color.fromRGBO(43, 105, 202, 1),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
                           Text(
-                            " 2456",
-                            style: TextStyle(
-                              color: Color.fromRGBO(0, 79, 171, 1),
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: -2,
-                              fontSize: _sizeHelper.getWidth(14),
+                            "Cash Mode",
+                            style: _whiteExtraBold().copyWith(
+                              color: !_switchValue ? Colors.grey : Colors.white,
+                            ),
+                          ),
+                          _sizeHelper.sbh(8),
+                          Transform.scale(
+                            scale: 0.6,
+                            child: Transform.rotate(
+                              angle: pi * 1.5,
+                              child: FlutterSwitch(
+                                activeColor: Colors.white,
+                                inactiveColor: Colors.white,
+                                activeToggleColor:
+                                    Color.fromRGBO(43, 105, 202, 1),
+                                inactiveToggleColor:
+                                    Color.fromRGBO(43, 105, 202, 1),
+                                onToggle: (value) {
+                                  _switchValue = value;
+                                  setState(() {});
+                                },
+                                value: _switchValue,
+                              ),
+                              // child: CupertinoSwitch(
+                              //   activeColor: Colors.white,
+                              //   trackColor: Colors.white,
+                              //   onChanged: (value) {
+                              //     _switchValue = value;
+                              //     setState(() {});
+                              //   },
+                              //   value: _switchValue,
+                              // ),
+                            ),
+                          ),
+                          _sizeHelper.sbh(8),
+                          Text(
+                            "Free Mode",
+                            style: _whiteExtraBold().copyWith(
+                              color: _switchValue ? Colors.grey : Colors.white,
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Container(
+                        height: _sizeHelper.getHeight(50),
+                        width: _sizeHelper.getWidth(30),
+                        decoration: BoxDecoration(
+                          // color: Colors.red,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/Group 204.png"),
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            _sizeHelper.sbw(12),
+                            Text(
+                              "Rs.",
+                              style: TextStyle(
+                                color: Color.fromRGBO(0, 79, 171, 1),
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: -2,
+                                fontSize: _sizeHelper.getWidth(10),
+                              ),
+                            ),
+                            Text(
+                              " 2456",
+                              style: TextStyle(
+                                color: Color.fromRGBO(0, 79, 171, 1),
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: -2,
+                                fontSize: _sizeHelper.getWidth(14),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
